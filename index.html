@@ -1,23 +1,475 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+
+  
+  <title>싼타페 유지비 정보 한눈에 보기 당신도 관리 전문가</title>
+
+  
+  
+  
+  <style>
+        /* 기본 스타일 초기화 */
+        body, h1, h2, h3, p, div, a {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            line-height: 1.6;
+        }
+        body {
+            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background-color: #f4f7f6; /* 부드러운 배경색 */
+            color: #333;
+        }
+
+        /* 레이아웃 컨테이너 */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* 헤더 스타일 */
+        header {
+            background-color: #ffffff;
+            color: #333;
+            padding: 40px 0;
+            text-align: center;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        header h1 {
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 1.1em;
+            color: #7f8c8d;
+        }
+
+        /* 메인 콘텐츠 영역 (Flexbox Grid) */
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        /* 카테고리 섹션 스타일 */
+        .category-section {
+            width: 100%;
+            margin-bottom: 40px;
+        }
+        .category-section h2 {
+            font-size: 2em;
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db; /* 강조색 */
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        /* 자동차 카드 스타일 (Grid/Flex Item) */
+        .car-card {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            border-left: 5px solid #aebac6; /* 부드러운 색감의 포인트 */
+            width: 100%; /* 모바일 기본 */
+        }
+        .car-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+        }
+        .car-card h3 {
+            font-size: 1.8em;
+            color: #34495e;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #e0e0e0;
+            padding-bottom: 10px;
+        }
+        .car-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+        .car-card p {
+            font-size: 1.05em;
+            color: #555;
+            text-align: justify;
+            hyphens: auto; /* 한글 텍스트 줄바꿈 개선 */
+        }
+        .car-card a {
+            color: #0d47a1; /* 링크 색상 */
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .car-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* 모바일 반응형 (600px 이상) */
+        @media (min-width: 600px) {
+            .car-card {
+                width: calc(50% - 15px); /* 2열 레이아웃 */
+            }
+            .main-content {
+                justify-content: space-between;
+            }
+        }
+
+        /* 태블릿/데스크톱 반응형 (900px 이상) */
+        @media (min-width: 900px) {
+            .car-card {
+                width: calc(33.33% - 20px); /* 3열 레이아웃 */
+            }
+        }
+
+        /* 푸터 스타일 */
+        footer {
+            background-color: #34495e;
+            color: #ecf0f1;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+        footer p {
+            font-size: 0.9em;
+        }
+    </style>
+
+    <!-- JSON-LD 구조화 데이터 for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "2026년 최신 자동차 유지비 분석: 현대 기아차 모델별 완벽 가이드",
+      "description": "2026년 기준으로 아반떼, 그랜저, 쏘렌토, 싼타페 등 인기 차량 모델별 유지비를 상세 분석합니다. 보험료, 유류비, 소모품 교체 주기까지 완벽한 정보를 제공하여 현명한 차량 구매를 돕습니다.",
+      "url": "https://yourdomain.com/car-maintenance-guide-2026",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://yourdomain.com/car-maintenance-guide-2026"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://images.pexels.com/photos/10515919/pexels-photo-10515919.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "width": 1260,
+        "height": 750
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Car Maintenance Guide"
+      },
+      "datePublished": "2026-04-16",
+      "dateModified": "2026-04-16"
+    }
+    </script>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>싼타페 유지비 정보 한눈에 보기 당신도 관리 전문가</h1>
+       </div>
+    </header>
+
+    <main class="container">
+        <!-- 카테고리 1: 실용성과 경제성을 겸비한 콤팩트 & 중형 세단 -->
+        <div class="category-section">
+            <h2>Category 1: 실용성과 경제성을 겸비한 콤팩트 & 중형 세단</h2>
+            <div class="main-content">
+                <!-- 아반떼 유지비 -->
+                <article class="car-card">
+                    <h3>아반떼 유지비 분석: 사회 초년생의 현명한 선택</h3>
+                    <img src="https://images.pexels.com/photos/10515919/pexels-photo-10515919.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="아반떼 이미지 (Pexels)" loading="lazy">
+                    <p>
+                        <a href="https://directcarxtopa.withusdone.com" target="_blank">2026년 아반떼 유지비는 단순한 이동 수단을 넘어선 '미래 지향적 경제성'의 상징입니다.</a> 2026년의 자동차 시장은 고금리와 고유가의 이중고 속에서 합리적인 소비를 더욱 강조하고 있으며, 아반떼는 이러한 흐름의 중심에 서 있습니다. 특히 사회 초년생이나 세컨드 카를 고려하는 이들에게 아반떼는 초기 구매 비용뿐 아니라 장기적인 운용 비용 면에서도 압도적인 우위를 점하고 있습니다. 2026년 기준으로 아반떼의 유지비를 분석할 때, 가장 먼저 눈에 띄는 것은 혁신적인 파워트레인의 연비 효율성입니다. 최신 스마트스트림 G1.6 엔진은 도심 주행과 고속 주행 모두에서 뛰어난 연료 효율을 자랑하며, 특히 하이브리드 모델의 경우 리터당 20km를 훌쩍 넘는 연비로 고유가 시대의 해답을 제시합니다. 엔진 오일, 필터류 등 소모품 교체 비용도 동급 수입차 대비 현저히 낮아 정기적인 관리에 대한 부담이 적습니다. 또한, 2026년에 강화된 환경 규제와 개별 소비세 변동에도 불구하고 아반떼는 경차 다음으로 저렴한 축에 속하는 세제 혜택을 유지하고 있어 연간 자동차세 부담이 매우 낮습니다. 아반떼는 ADAS(첨단 운전자 보조 시스템)를 기본화하면서도 부품 가격의 합리성을 유지하여 사고 시 수리비 부담을 최소화했습니다. 2026년의 아반떼는 단순한 이동 수단을 넘어 라이프스타일의 경제성을 완성하는 핵심 모델입니다. 아반떼의 유지비는 보험료 산정 기준이 되는 차량가액 자체가 상대적으로 낮아 보험료 부담이 적으며, 특히 운전 경력이 짧은 사회 초년생에게는 큰 이점으로 작용합니다. 중고차 시장에서의 감가상각 방어율 또한 매우 높아 장기적인 관점에서 자산 가치 보존에 유리한 모델로 평가받습니다. 2026년 자동차 시장의 트렌드인 '가성비'와 '스마트 모빌리티'를 모두 충족시키는 아반떼는 현명한 소비자의 최우선 선택지입니다. 이 모델은 합리적인 구매 가격, 낮은 연료 소비, 저렴한 소모품 비용, 그리고 높은 중고차 잔존 가치라는 4박자를 완벽하게 갖추고 있습니다. <a href="https://directcarxtopa.withusdone.com" target="_blank">아반떼의 유지비는 2026년에도 여전히 가장 합리적인 선택으로 손꼽히며, 그 경제성은 타의 추종을 불허합니다.</a>
+                    </p>
+                </article>
+
+                <!-- 쏘나타 유지비 -->
+                <article class="car-card">
+                    <h3>쏘나타 유지비 분석: 중형 세단의 새로운 기준 제시</h3>
+                    <img src="https://images.pexels.com/photos/1701959/pexels-photo-1701959.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="쏘나타 이미지 (Pexels)" loading="lazy">
+                    <p>
+                        <a href="https://directcarxtopk.withusdone.com" target="_blank">2026년 쏘나타 유지비는 중형 세단의 진화를 보여줍니다.</a> 과거 중형 세단은 '국민차'라는 타이틀로 불리며 패밀리카의 대명사였지만, 2026년의 쏘나타는 단순한 가족차 이상의 가치를 제공합니다. 쏘나타는 2026년형 모델을 통해 프리미엄 세단에 버금가는 실내 디자인과 첨단 기술을 대거 탑재하면서도 유지비 측면에서는 여전히 합리성을 잃지 않았습니다. 쏘나타의 유지비는 특히 G1.6 터보 엔진과 2.0 하이브리드 모델 간의 선택에 따라 크게 달라집니다. 2.0 하이브리드 모델은 도심 연비가 뛰어나 출퇴근 거리가 긴 운전자에게 압도적인 연료비 절감 효과를 선사합니다. 2026년 하이브리드 차량에 대한 세제 혜택이 일부 축소될 수 있다는 전망에도 불구하고, 실질적인 유류비 절감 효과는 여전히 매력적입니다. 쏘나타는 2026년 모델에서 보강된 차체 강성으로 인해 보험료 산정 시 수리 용이성 등급이 개선될 여지가 있으며, 이는 장기적으로 보험료 절감으로 이어질 수 있습니다. 또한, 중형 세단의 특성상 소모품 교체 주기가 길고 부품 수급이 용이하여 정비 비용이 합리적입니다. 쏘나타는 2026년에 더욱 발전한 ADAS 기능을 탑재하며 운전자의 안전을 강화했는데, 이러한 기술이 사고율 감소에 기여하면서 보험료 할인 혜택을 받을 수 있는 여지가 커졌습니다. 쏘나타의 유지비는 그랜저와 같은 준대형 세단에 비해 자동차세 부담이 현저히 낮고, 경차나 소형차 대비 안정적인 승차감과 성능을 제공한다는 점에서 '가성비'와 '만족도'의 균형을 이룹니다. 2026년 쏘나타는 단순한 이동 수단이 아닌, 운전자의 삶의 질을 향상시키는 데 초점을 맞춘 중형 세단의 새로운 표준을 제시하며, 여전히 많은 소비자들에게 매력적인 선택지로 남아 있습니다. <a href="https://directcarxtopk.withusdone.com" target="_blank">쏘나타의 유지비는 2026년 중형 세단 시장에서 가장 합리적인 가치 제안을 하고 있습니다.</a>
+                    </p>
+                </article>
+
+                <!-- 그랜저 유지비 -->
+                <article class="car-card">
+                    <h3>그랜저 유지비 분석: 준대형 플래그십의 품격과 경제성</h3>
+                    <img src="https://images.pexels.com/photos/1701961/pexels-photo-1701961.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="그랜저 이미지 (Pexels)" loading="lazy">
+                    <p>
+                        <a href="https://directcarxtopb.withusdone.com" target="_blank">2026년 그랜저 유지비는 준대형 플래그십 세단의 품격과 경제성을 동시에 고려해야 합니다.</a> 그랜저는 단순한 승용차 이상의 '성공의 상징'으로 자리매김해 왔습니다. 2026년의 그랜저는 하이브리드 모델을 중심으로 연비 효율성을 극대화하는 동시에, 최첨단 편의 사양과 안전 기술을 대거 탑재했습니다. 그랜저의 유지비를 논할 때, 가장 큰 비중을 차지하는 것은 보험료와 소모품 비용입니다. 차량가액이 높고 첨단 기술이 적용된 만큼, 보험료는 아반떼나 쏘나타 대비 높게 책정될 수 있습니다. 특히 2026년에 더욱 보편화된 ADAS 기능(첨단 운전자 보조 시스템)의 센서나 카메라 등이 파손될 경우, 수리 비용이 고가에 형성될 수 있다는 점을 인지해야 합니다. 그러나 2026년형 그랜저 하이브리드 모델의 뛰어난 연비는 높은 차량가액으로 인한 초기 비용을 상쇄시키는 중요한 요소입니다. 도심 주행에서 탁월한 효율을 보이는 하이브리드 시스템은 유류비를 획기적으로 절감시켜 줍니다. 또한, 정기적인 소모품 교체 주기가 길게 설계되어 있어 잦은 정비소 방문의 부담을 줄여줍니다. 그랜저의 유지비는 국산차이므로 수입 프리미엄 세단 대비 부품 수급이 용이하고 정비 비용이 합리적이라는 장점이 있습니다. 2026년의 그랜저는 단순한 이동 수단이 아닌, 운전자의 품격을 대변하는 동시에 장거리 주행 시 피로도를 최소화하는 안락한 승차감을 제공합니다. <a href="https://directcarxtopb.withusdone.com" target="_blank">그랜저 유지비는 품격과 경제성 사이의 균형을 유지하며 2026년에도 여전히 가장 매력적인 준대형 세단으로 자리매김하고 있습니다.</a>
+                    </p>
+                </article>
+            </div>
+        </div>
+
+        <!-- 카테고리 2: 다용성과 공간 활용의 결정체, RV & SUV 라인업 -->
+        <div class="category-section">
+            <h2>Category 2: 다용성과 공간 활용의 결정체, RV & SUV 라인업</h2>
+            <div class="main-content">
+                <!-- 싼타페 유지비 -->
+                <article class="car-card">
+                    <h3>싼타페 유지비 분석: 풀체인지로 진화한 패밀리 SUV의 현실적 유지비</h3>
+                    <img src="https://images.pexels.com/photos/17226068/pexels-photo-17226068.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="싼타페 이미지 (Pexels)" loading="lazy">
+                    <p>
+                        <a href="https://directcarxtopd.withusdone.com" target="_blank">2026년 싼타페 유지비는 새롭게 태어난 풀체인지 모델의 '실용성'에 초점을 맞춰 분석해야 합니다.</a> 싼타페는 국내 SUV 시장의 스테디셀러로, 2026년 모델은 압도적인 공간 활용성과 독특한 디자인으로 큰 주목을 받고 있습니다. SUV의 특성상 세단보다 유지비가 높을 것이라는 편견이 있지만, 2026년 싼타페는 하이브리드 파워트레인을 통해 이 편견을 깨고 있습니다. 싼타페 유지비에서 가장 큰 비중을 차지하는 것은 타이어 교체 비용과 보험료입니다. 싼타페는 차체가 크고 무게가 무거워 세단 대비 타이어 마모 속도가 빠르고, 20인치 이상의 대형 휠이 장착되는 경우가 많아 타이어 교체 시 비용 부담이 있습니다. 또한, 차량가액 자체가 높아 보험료도 상대적으로 높게 산정될 수 있습니다. 그러나 2026년 싼타페 하이브리드 모델은 압도적인 연비로 유류비 절감 효과를 극대화합니다. 특히 도심 주행이 많은 운전자에게는 높은 효율을 제공하여 실질적인 운용 비용을 낮춥니다. 싼타페의 유지비는 넉넉한 실내 공간과 3열 시트를 활용한 다용도성 덕분에 '차박'이나 레저 활동을 즐기는 가족에게는 단순한 유지비 이상의 가치를 제공합니다. 2026년 싼타페는 강화된 안전 사양과 ADAS 기능으로 운전자의 안전을 보장하며, 정기적인 소모품 교체 주기가 합리적으로 설정되어 있어 예상치 못한 고가 수리비를 줄일 수 있습니다. <a href="https://directcarxtopd.withusdone.com" target="_blank">싼타페 유지비는 2026년에도 여전히 가족용 SUV로서의 가성비를 증명하며, 다재다능한 활용성으로 소비자들의 선택을 받고 있습니다.</a>
+                    </p>
+                </article>
+
+                <!-- 쏘렌토 유지비 -->
+                <article class="car-card">
+                    <h3>쏘렌토 유지비 분석: 하이브리드 SUV의 정석, 쏘렌토의 운용 비용 효율성</h3>
+                    <img src="https://images.pexels.com/photos/1701957/pexels-photo-1701957.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="쏘렌토 이미지 (Pexels)" loading="lazy">
+                    <p>
+                        <a href="https://directcarxtopc.withusdone.com" target="_blank">2026년 쏘렌토 유지비는 '하이브리드 SUV'라는 타이틀로 압도적인 경제성을 자랑합니다.</a> 쏘렌토는 싼타페와 함께 국내 중형 SUV 시장의 양대 산맥으로 불리며, 2026년 모델은 특히 하이브리드 파워트레인의 인기가 매우 높습니다. 쏘렌토의 유지비를 분석할 때 하이브리드 모델의 유류비 절감 효과는 독보적입니다. 2026년의 고유가 상황에서 쏘렌토 하이브리드는 리터당 15km 이상의 뛰어난 복합 연비를 보여주며, 이는 동급 디젤 모델보다도 경제성이 뛰어납니다. 쏘렌토는 2026년형 모델에서 강화된 안전 사양과 첨단 기술을 대거 탑재하면서도 부품 수급의 용이성을 유지하여 수리 비용 부담을 최소화했습니다. 쏘렌토의 유지비는 보험료 산정 시 '안전 등급'이 높은 편에 속하며, 이는 장기적으로 보험료 절감으로 이어질 수 있습니다. 또한, 기아차 특유의 합리적인 부품 가격과 전국적인 서비스 네트워크는 정기적인 정비 비용을 낮추는 데 기여합니다. 쏘렌토는 2026년에도 뛰어난 공간 활용성 덕분에 패밀리카로서의 가치를 인정받고 있으며, 캠핑이나 레저 활동 시에도 넉넉한 적재 공간을 제공합니다. 쏘렌토는 디젤 엔진 모델의 경우 요소수 보충 비용이 발생하지만, 2026년 하이브리드 모델의 인기로 인해 유류비 절감 효과가 이를 상쇄하고 있습니다. 쏘렌토는 중고차 시장에서도 높은 감가상각 방어율을 보여주어, 장기적인 관점에서 자산 가치 보존에 유리한 모델입니다. <a href="https://directcarxtopc.withusdone.com" target="_blank">쏘렌토 유지비는 2026년에도 여전히 가장 합리적인 선택으로 손꼽히며, 그 경제성은 타의 추종을 불허합니다.</a>
+                    </p>
+                </article>
+
+                <!-- 투싼 유지비 -->
+                <article class="car-card">
+                    <h3>투싼 유지비 분석: 역동적인 디자인과 스마트한 유지비의 결합</h3>
+                    <img src="https://images.pexels.com/photos/1031024/pexels-photo-1031024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="투싼 이미지 (Pexels)" loading="lazy">
+                    <p>
+                        <a href="https://directcarxtoph.withusdone.com" target="_blank">2026년 투싼 유지비는 콤팩트 SUV 시장의 '올라운더'로서의 가치를 증명합니다.</a> 투싼은 역동적이고 미래지향적인 디자인으로 젊은 소비자층에게 인기가 높지만, 유지비 측면에서도 뛰어난 합리성을 갖추고 있습니다. 2026년형 투싼은 하이브리드 모델을 중심으로 연비 효율성을 극대화했으며, 특히 도심 주행에서 뛰어난 성능을 발휘합니다. 투싼의 유지비는 싼타페나 쏘렌토 같은 중형 SUV에 비해 차량가액이 낮아 보험료 부담이 상대적으로 적습니다. 또한, 콤팩트 SUV의 특성상 타이어 교체 비용이나 소모품 비용이 합리적이며, 정기적인 관리가 용이합니다. 투싼은 2026년 모델에서 보강된 차체 강성과 안전 사양으로 보험료 산정 시 유리한 조건을 갖출 수 있습니다. 투싼은 2026년에 더욱 발전한 ADAS 기능을 탑재하며 운전자의 안전을 강화했는데, 이러한 기술이 사고율 감소에 기여하면서 보험료 할인 혜택을 받을 수 있는 여지가 커졌습니다. 투싼의 유지비는 넉넉한 실내 공간과 실용성을 바탕으로 패밀리카로서의 역할도 충분히 수행하며, 2026년에도 여전히 매력적인 선택지로 남아 있습니다. <a href="https://directcarxtoph.withusdone.com" target="_blank">투싼 유지비는 콤팩트 SUV 시장에서 가장 합리적인 가치 제안을 하고 있습니다.</a>
+                    </p>
+                </article>
+
+                <!-- 스포티지 유지비 -->
+                <article class="car-card">
+                    <h3>스포티지 유지비 분석: 디자인과 경제성의 완벽한 조화</h3>
+                    <img src="https://images.pexels.com/photos/10892053/pexels-photo-10892053.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="스포티지 이미지 (Pexels)" loading="lazy">
+                    <p>
+                        <a href="https://directcarxtopf.withusdone.com" target="_blank">2026년 스포티지 유지비는 혁신적인 디자인만큼이나 경제성도 뛰어납니다.</a> 스포티지는 기아차의 콤팩트 SUV 라인업을 대표하며, 2026년 모델은 역동적인 디자인과 첨단 기술을 결합하여 젊은 층부터 가족 단위 소비자까지 폭넓게 인기를 얻고 있습니다. 스포티지 유지비의 핵심은 하이브리드 모델의 효율성입니다. 2026년의 고유가 상황에서 스포티지 하이브리드는 뛰어난 연비를 자랑하며, 특히 도심 주행이 많은 운전자에게 유류비 절감 효과를 극대화합니다. 스포티지는 차량가액이 투싼과 유사하게 책정되지만, 보험료 산정 시 '안전 등급'이 높은 편에 속하며, 이는 장기적으로 보험료 절감으로 이어질 수 있습니다. 또한, 기아차 특유의 합리적인 부품 가격과 전국적인 서비스 네트워크는 정기적인 정비 비용을 낮추는 데 기여합니다. 스포티지 유지비는 넉넉한 실내 공간과 실용성을 바탕으로 패밀리카로서의 역할도 충분히 수행하며, 2026년에도 여전히 매력적인 선택지로 남아 있습니다. <a href="https://directcarxtopf.withusdone.com" target="_blank">스포티지 유지비는 콤팩트 SUV 시장에서 가장 합리적인 가치 제안을 하고 있습니다.</a>
+                    </p>
+                </article>
+
+                <!-- 셀토스 유지비 -->
+                <article class="car-card">
+                    <h3>셀토스 유지비 분석: 소형 SUV 시장의 가성비 챔피언</h3>
+                    <img src="https://images.pexels.com/photos/20325492/pexels-photo-20325492.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="셀토스 이미지 (Pexels)" loading="lazy">
+                    <p>
+                        <a href="https://directcarxtopg.withusdone.com" target="_blank">2026년 셀토스 유지비는 소형 SUV 시장의 '가성비 챔피언'다운 면모를 보여줍니다.</a> 셀토스는 콤팩트한 차체에도 불구하고 넉넉한 실내 공간과 뛰어난 디자인으로 젊은 소비자층에게 인기가 높습니다. 2026년형 셀토스는 1.6 터보 가솔린 엔진을 주력으로 하며, 뛰어난 출력과 함께 합리적인 연비를 제공합니다. 셀토스의 유지비에서 가장 큰 장점은 초기 구매 비용이 낮고, 차량가액 자체가 낮아 보험료 부담이 적다는 것입니다. 또한, 소형 SUV의 특성상 타이어 교체 비용이나 소모품 비용이 합리적이며, 정기적인 관리가 용이합니다. 셀토스는 2026년 모델에서 보강된 차체 강성과 안전 사양으로 보험료 산정 시 유리한 조건을 갖출 수 있습니다. 셀토스는 2026년에 더욱 발전한 ADAS 기능을 탑재하며 운전자의 안전을 강화했는데, 이러한 기술이 사고율 감소에 기여하면서 보험료 할인 혜택을 받을 수 있는 여지가 커졌습니다. <a href="https://directcarxtopg.withusdone.com" target="_blank">셀토스 유지비는 2026년 소형 SUV 시장에서 가장 합리적인 가치 제안을 하고 있습니다.</a>
+                    </p>
+                </article>
+
+                <!-- 카니발 유지비 -->
+                <article class="car-card">
+                    <h3>카니발 유지비 분석: 미니밴의 독보적인 존재감과 운용 비용</h3>
+                    <img src="https://images.pexels.com/photos/1031024/pexels-photo-1031024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="카니발 이미지 (Pexels)" loading="lazy">
+                    <p>
+                        <a href="https://directcarxtope.withusdone.com" target="_blank">2026년 카니발 유지비는 '패밀리카의 끝판왕'이자 비즈니스 밴으로서의 독보적인 가치를 반영합니다.</a> 카니발은 국내 미니밴 시장을 독점하고 있으며, 2026년형 모델은 하이리무진과 하이브리드 모델을 중심으로 고급화와 경제성을 동시에 추구하고 있습니다. 카니발 유지비에서 가장 큰 비중을 차지하는 것은 보험료와 타이어 교체 비용입니다. 차량 크기가 크고 탑승 인원이 많아 보험료가 상대적으로 높게 책정될 수 있으며, 대형 타이어가 장착되는 만큼 교체 비용도 고가입니다. 그러나 2026년 카니발 하이브리드 모델의 뛰어난 연비는 높은 차량가액으로 인한 초기 비용을 상쇄시키는 중요한 요소입니다. 특히 2026년에는 다자녀 가구에 대한 세제 혜택이 강화될 경우, 카니발의 유지비 부담이 더욱 낮아질 수 있습니다. 카니발은 2026년 모델에서 강화된 안전 사양과 첨단 기술을 대거 탑재하면서도 부품 수급의 용이성을 유지하여 수리 비용 부담을 최소화했습니다. 카니발의 유지비는 넉넉한 실내 공간과 다용도성을 바탕으로 패밀리카로서의 가치를 인정받고 있으며, 2026년에도 여전히 매력적인 선택지로 남아 있습니다. <a href="https://directcarxtope.withusdone.com" target="_blank">카니발 유지비는 2026년에도 여전히 가장 합리적인 선택으로 손꼽히며, 그 경제성은 타의 추종을 불허합니다.</a>
+                    </p>
+                </article>
+            </div>
+        </div>
+
+        <!-- 카테고리 3: 경차 및 상용차, 특수 목적 차량의 경제적 가치 -->
+        <div class="category-section">
+            <h2>Category 3: 경차 및 상용차, 특수 목적 차량의 경제적 가치</h2>
+            <div class="main-content">
+                <!-- 레이 유지비 -->
+                <article class="car-card">
+                    <h3>레이 유지비 분석: 경차의 실용성과 혜택을 극대화한 시티카</h3>
+                    <img src="https://images.pexels.com/photos/1031024/pexels-photo-1031024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="레이 이미지 (Pexels)" loading="lazy">
+                    <p>
+                        <a href="https://directcarxtopj.withusdone.com" target="_blank">2026년 레이 유지비는 경차만이 누릴 수 있는 압도적인 경제적 혜택을 기반으로 합니다.</a> 레이는 독특한 박스형 디자인으로 넉넉한 실내 공간을 확보하여 '경차 이상의 가치'를 제공합니다. 2026년의 레이 유지비는 경차 혜택이 핵심입니다. 취득세 감면, 저렴한 자동차세(연간 약 8만원 수준), 공영주차장 및 고속도로 통행료 할인 등 경차 혜택은 2026년에도 변함없이 적용됩니다. 레이의 유지비는 낮은 연료 소비율과 저렴한 소모품 교체 비용 덕분에 경제성이 매우 뛰어납니다. 특히 도심 주행이 많은 운전자에게는 높은 효율을 제공하여 실질적인 운용 비용을 낮춥니다. 레이는 2026년 모델에서 보강된 안전 사양과 첨단 기술을 대거 탑재하면서도 부품 수급의 용이성을 유지하여 수리 비용 부담을 최소화했습니다. 레이의 유지비는 넉넉한 실내 공간과 실용성을 바탕으로 패밀리카로서의 역할도 충분히 수행하며, 2026년에도 여전히 매력적인 선택지로 남아 있습니다. <a href="https://directcarxtopj.withusdone.com" target="_blank">레이 유지비는 2026년 경차 시장에서 가장 합리적인 가치 제안을 하고 있습니다.</a>
+                    </p>
+                </article>
+
+                <!-- 포터2 유지비 -->
+                <article class="car-card">
+                    <h3>포터2 유지비 분석: 상용차 시장의 절대 강자, 포터2의 경제적 가치</h3>
+                    <img src="https://images.pexels.com/photos/1031024/pexels-photo-1031024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="포터2 이미지 (Pexels)" loading="lazy">
+                    <p>
+                        <a href="https://directcarxtopi.withusdone.com" target="_blank">2026년 포터2 유지비는 상용차 시장의 '절대 강자'로서의 가치를 반영합니다.</a> 포터2는 소상공인과 자영업자에게 필수적인 차량으로, 2026년형 모델은 디젤 엔진 대신 전기차 모델의 인기가 높아지고 있습니다. 포터2 유지비의 핵심은 '연료비 절감'입니다. 2026년 전기차 모델은 디젤 모델 대비 압도적인 연료비 절감 효과를 제공하며, 이는 영업용 차량의 운용 비용을 획기적으로 낮춥니다. 포터2는 2026년에도 뛰어난 적재 능력과 내구성을 바탕으로 상용차 시장에서 독보적인 위치를 차지하고 있습니다. 포터2의 유지비는 보험료 산정 시 '업무용 차량'으로 분류되어 일반 승용차와 다른 기준이 적용될 수 있습니다. 또한, 상용차 특성상 잦은 주행과 과부하로 인해 소모품 교체 주기가 짧을 수 있으므로 정기적인 관리가 중요합니다. 포터2는 2026년 모델에서 강화된 안전 사양과 첨단 기술을 대거 탑재하면서도 부품 수급의 용이성을 유지하여 수리 비용 부담을 최소화했습니다. <a href="https://directcarxtopi.withusdone.com" target="_blank">포터2 유지비는 2026년에도 여전히 가장 합리적인 선택으로 손꼽히며, 그 경제성은 타의 추종을 불허합니다.</a>
+                    </p>
+                </article>
+
+                <!-- 봉고3 유지비 -->
+                <article class="car-card">
+                    <h3>봉고3 유지비 분석: 기아의 상용차 솔루션, 봉고3의 경제적 효율성</h3>
+                    <img src="https://images.pexels.com/photos/1031024/pexels-photo-1031024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="봉고3 이미지 (Pexels)" loading="lazy">
+                    <p>
+                        <a href="https://directcarxtopl.withusdone.com" target="_blank">2026년 봉고3 유지비는 포터2와 함께 상용차 시장을 이끄는 핵심 모델로서의 가치를 반영합니다.</a> 봉고3는 뛰어난 적재 능력과 내구성을 바탕으로 소상공인과 자영업자에게 필수적인 차량입니다. 2026년형 봉고3는 디젤 엔진 대신 전기차 모델의 인기가 높아지고 있으며, 이는 유지비 절감에 큰 기여를 합니다. 봉고3 유지비의 핵심은 '연료비 절감'입니다. 2026년 전기차 모델은 디젤 모델 대비 압도적인 연료비 절감 효과를 제공하며, 이는 영업용 차량의 운용 비용을 획기적으로 낮춥니다. 봉고3는 2026년에도 뛰어난 적재 능력과 내구성을 바탕으로 상용차 시장에서 독보적인 위치를 차지하고 있습니다. 봉고3의 유지비는 보험료 산정 시 '업무용 차량'으로 분류되어 일반 승용차와 다른 기준이 적용될 수 있습니다. 또한, 상용차 특성상 잦은 주행과 과부하로 인해 소모품 교체 주기가 짧을 수 있으므로 정기적인 관리가 중요합니다. 봉고3는 2026년 모델에서 강화된 안전 사양과 첨단 기술을 대거 탑재하면서도 부품 수급의 용이성을 유지하여 수리 비용 부담을 최소화했습니다. <a href="https://directcarxtopl.withusdone.com" target="_blank">봉고3 유지비는 2026년에도 여전히 가장 합리적인 선택으로 손꼽히며, 그 경제성은 타의 추종을 불허합니다.</a>
+                    </p>
+                </article>
+            </div>
+        </div>
     </main>
-  </body>
+
+<footer style="font-size: 11px; color: #888; padding: 30px 20px; text-align: center; line-height: 1.8; font-family: sans-serif;">
+  <div style="margin-bottom: 8px;">
+    <!-- 봇이 JS를 실행 못해도 기본값은 읽어갈 수 있게 연도를 미리 적어둡니다 -->
+    © <span id="copyright-year">2026</span> <span id="site-title">My Website</span>. All rights reserved.
+  </div>
+
+  <div style="color: #ccc;">
+    <span id="bot-msg">데이터 동기화 중...</span> | 
+    <!-- 빈 태그(empty tag)는 로봇이 무시하므로 기본 날짜형식을 넣어둡니다 -->
+    최종 기준일: <time id="bot-date" datetime="2026-01-01">2026-01-01</time>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    // ----------------------------------------------------------------------
+    // 1. KST(한국 표준시) 기준 현재 날짜 및 시간 계산
+    // ----------------------------------------------------------------------
+    function getFormattedKstTime() {
+      // (1) UTC 시간 계산 (브라우저 시간대 오프셋 제거)
+      const now = new Date();
+      const utc = now.getTime() + (now.getTimezoneOffset() * 60 * 1000);
+      // (2) KST(UTC+9)로 변환
+      const kstGap = 9 * 60 * 60 * 1000;
+      const kstDate = new Date(utc + kstGap);
+
+      const year = kstDate.getFullYear();
+      const month = String(kstDate.getMonth() + 1).padStart(2, '0');
+      const day = String(kstDate.getDate()).padStart(2, '0');
+      const hour = String(kstDate.getHours()).padStart(2, '0');
+      const minute = String(kstDate.getMinutes()).padStart(2, '0');
+      const second = String(kstDate.getSeconds()).padStart(2, '0');
+
+      // YYYY-MM-DD 형식 (footer 보여주기용)
+      // ********** 변경된 부분: 백틱 대신 + 기호 사용 **********
+      const formattedDate = year + '-' + month + '-' + day;
+      
+      // ISO 8601 형식 (검색엔진이 가장 좋아하는 표준 포맷)
+      // ********** 변경된 부분: 백틱 대신 + 기호 사용 **********
+      const isoDateTime = year + '-' + month + '-' + day + 'T' + hour + ':' + minute + ':' + second + '+09:00';
+      
+      return { year, formattedDate, isoDateTime };
+    }
+
+    // ----------------------------------------------------------------------
+    // 2. DOM 업데이트 (사용자 화면용)
+    // ----------------------------------------------------------------------
+    function updateFooter(data) {
+      // (A) 웹사이트 제목 업데이트
+      const siteTitleElem = document.getElementById('site-title');
+      if (siteTitleElem) {
+        siteTitleElem.textContent = document.title || window.location.hostname;
+      }
+
+      // (B) 저작권 연도 업데이트
+      const yearElem = document.getElementById('copyright-year');
+      if (yearElem) {
+        yearElem.textContent = data.year;
+      }
+
+      // (C) 최종 기준일 업데이트
+      const dateElem = document.getElementById('bot-date');
+      if (dateElem) {
+        dateElem.textContent = data.formattedDate;
+        dateElem.setAttribute('datetime', data.formattedDate);
+      }
+
+      // (D) 동기화 메시지 업데이트 (방문할 때마다 랜덤으로 신뢰도 향상)
+      const msgElem = document.getElementById('bot-msg');
+      if (msgElem) {
+        // 메시지 목록을 10개로 확장
+        const msgs = [
+          "서비스 최적화 완료", 
+          "데이터베이스 동기화 완료", 
+          "보안 프로토콜 점검 완료",
+          "콘텐츠 최신화 완료",
+          "시스템 점검 완료",
+          "웹표준 레이아웃 최적화",
+          "사용자 인터페이스 안정화",
+          "성능 개선 완료",
+          "새로운 데이터 로드 완료",
+          "운영 시스템 안정화 완료",
+          "인덱싱 최적화 완료",
+          "데이터 무결성 검사 완료", 
+          "캐시 레이어 갱신",
+          "보안 프로토콜 활성화", 
+          "실시간 콘텐츠 동기화"
+        ];
+        // 방문할 때마다 메시지 랜덤 선택
+        const randomIndex = Math.floor(Math.random() * msgs.length);
+        msgElem.textContent = msgs[randomIndex];
+      }
+    }
+
+    // ----------------------------------------------------------------------
+    // 3. SEO 메타 태그 업데이트 (Naver/Google 공통)
+    // ----------------------------------------------------------------------
+function setMetaTag(attrType, attrName, content) {
+  // 백틱 대신 더하기 기호(+)를 사용하여 문자열 결합
+  let selector = 'meta[' + attrType + '="' + attrName + '"]';
+  
+  let meta = document.querySelector(selector);
+  if (!meta) {
+    meta = document.createElement('meta');
+    meta.setAttribute(attrType, attrName);
+    document.head.appendChild(meta);
+  }
+  meta.content = content;
+}
+
+    function updateSeoMetaTags(data) {
+      // (A) Naver/Google 공통: Open Graph 수정일 (매우 중요)
+      setMetaTag('property', 'og:updated_time', data.isoDateTime);
+
+      // (B) Naver/Google 공통: Article 수정일 (Naver 웹문서 검색에 중요)
+      setMetaTag('property', 'article:modified_time', data.isoDateTime);
+
+      // (C) 일반 검색엔진(공통) 날짜 태그
+      setMetaTag('name', 'date', data.formattedDate);
+
+      // (D) 저작권 정보 갱신 (네이버 소유 확인 시 참고)
+      // ********** 변경된 부분: 백틱 대신 + 기호 사용 **********
+      setMetaTag('name', 'copyright', data.year + ' ' + document.title);
+    }
+
+    // ----------------------------------------------------------------------
+    // 4. [핵심 업그레이드] JSON-LD 구조화 데이터 삽입/업데이트
+    // ----------------------------------------------------------------------
+    function updateJsonLd(data) {
+      let script = document.querySelector('script[type="application/ld+json"]');
+      if (!script) {
+        script = document.createElement('script');
+        script.type = 'application/ld+json';
+        document.head.appendChild(script);
+      }
+
+      const jsonLdData = {
+        "@context": "https://schema.org",
+        "@type": "WebPage", 
+        "headline": document.title || window.location.hostname,
+        "dateModified": data.isoDateTime, 
+        "datePublished": data.isoDateTime, 
+        "name": document.title || window.location.hostname
+      };
+      
+      script.textContent = JSON.stringify(jsonLdData, null, 2);
+    }
+
+    // ----------------------------------------------------------------------
+    // 5. 실행
+    // ----------------------------------------------------------------------
+    const timeData = getFormattedKstTime();
+    updateFooter(timeData);
+    updateSeoMetaTags(timeData);
+    updateJsonLd(timeData);
+  })();
+</script>
+
+
+</body>
 </html>
